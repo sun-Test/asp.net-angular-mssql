@@ -1,0 +1,34 @@
+﻿<Properties StartupConfiguration="{1F4A330D-083A-4FAA-B7FF-037777714A18}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sunny-dn-01/Controllers/UserController.cs">
+    <Files>
+      <File FileName="sunny-dn-01/Controllers/UserController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="sunny-dn-01" expanded="True">
+            <Node name="sunny-dn-01" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="UserController.cs" selected="True" />
+              </Node>
+              <Node name="Domains" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Repository" expanded="True" />
+              <Node name="Service" expanded="True">
+                <Node name="UserService" expanded="True" />
+                <Node name="VotingService" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.sunny-dn-01 PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
