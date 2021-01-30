@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <div class="button-row">
+        <button mat-raised-button color="basic" (click)="onRegister()">register</button>
+        <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
+    </div>
+    </mat-card-content>
+  </mat-card>
