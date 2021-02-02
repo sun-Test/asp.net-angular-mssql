@@ -1,20 +1,25 @@
 ﻿<Properties StartupConfiguration="{1F4A330D-083A-4FAA-B7FF-037777714A18}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sunny-dn-01/Controllers/UserController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sunny-dn-01/Models/VotingModel.cs">
     <Files>
-      <File FileName="sunny-dn-01/Controllers/UserController.cs" Line="1" Column="1" />
+      <File FileName="sunny-dn-01/Controllers/UserController.cs" Line="90" Column="22" />
+      <File FileName="sunny-dn-01/Service/KafkaService/KafPublisher.cs" Line="33" Column="10" />
+      <File FileName="sunny-dn-01/Service/KafkaService/IKafPublisher.cs" Line="9" Column="53" />
+      <File FileName="sunny-dn-01/Controllers/VotingController.cs" Line="1" Column="1" />
+      <File FileName="sunny-dn-01/Models/VotingModel.cs" Line="4" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="sunny-dn-01" expanded="True">
             <Node name="sunny-dn-01" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UserController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Domains" expanded="True" />
-              <Node name="Models" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="VotingModel.cs" selected="True" />
+              </Node>
               <Node name="Repository" expanded="True" />
               <Node name="Service" expanded="True">
+                <Node name="KafkaService" expanded="True" />
                 <Node name="UserService" expanded="True" />
                 <Node name="VotingService" expanded="True" />
               </Node>

@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   private readonly CREATE_USER: string = 'create-user';
-  private readonly newUserTopic: string = 'new-user';
   private email: string ='';
   
   constructor(private fb: FormBuilder, private _apiService: ApiServiceService,
@@ -25,10 +24,7 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this._wsService.listen(this.newUserTopic).subscribe(data => {
-        console.log('receive msg: ', data);
-    });;
-    
+
   }
 
 

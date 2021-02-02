@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from './models/user';
 import { environment} from './../environments/environment'
+import { IVoting } from './models/voting';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,14 @@ export class ApiServiceService {
   login(user: IUser): Observable<IUser> {
     console.log("post new user " + environment.apiUrl + '/User/Login');
     return this.http.post<IUser>( environment.apiUrl + '/User/Login', user);
+  }
+
+  createVoting(voting: IVoting): Observable<IVoting> {
+    console.log("post new user " + environment.apiUrl + 'Voting/CreateVoting');
+    return this.http.post<IVoting>( environment.apiUrl + 'Voting/CreateVoting', voting);
+  }
+
+  fetchVotingsFromServer(): Observable<IVoting[]>{
+    return this.http.get<IVoting[]>( environment.apiUrl + '/Voting/Votings');
   }
 }

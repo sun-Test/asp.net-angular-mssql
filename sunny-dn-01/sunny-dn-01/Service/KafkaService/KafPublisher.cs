@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading;
 using Confluent.Kafka;
+using sunny_dn_01.Domains;
 
 namespace sunny_dn_01.Service.KafkaService
 {

@@ -52,13 +52,15 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import { DocTreeComponent } from './doc-tree/doc-tree.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
+import { TabUsersComponent } from './tab-users/tab-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocTreeComponent,
     LoginComponent,
-    UsersComponent
+    UsersComponent,
+    TabUsersComponent
   ],
   imports: [
     FormsModule,
@@ -103,6 +105,7 @@ import { UsersComponent } from './users/users.component';
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,

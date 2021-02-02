@@ -10,6 +10,8 @@ using sunny_dn_01.Service.UserService;
 
 using sunny_dn_01.Service.KafkaService;
 using sunny_dn_01.DataContext;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace sunny_dn_01.Controllers
 {
@@ -60,7 +62,7 @@ namespace sunny_dn_01.Controllers
                                         User = user
                                     });
 
-                    await _publisher.PublishAsync("new-user", newUser.Email);
+                    await _publisher.PublishAsync("new-user", JsonSerializer.Serialize( newUser.Email));
                     return newUser;
                     
                 }
