@@ -1,21 +1,6 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null"> </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()"
-                      (change)="$event ? checkboxLabel(row) : null"
-                      [checked]="selection.isSelected(row)">
-        </mat-checkbox>
-      </td>
-    </ng-container>
-  
-    <!-- Name Column -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef> email </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> all users </th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
   
@@ -24,3 +9,4 @@
         (click)="selection.toggle(row)">
     </tr>
   </table>  
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]"></mat-paginator>

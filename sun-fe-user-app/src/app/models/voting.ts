@@ -1,5 +1,5 @@
 export interface IVoting {
     candidateEmail: string,
-    voterEmail:string,
+    voterEmail?:string,
     votingCounter?: number 
 }

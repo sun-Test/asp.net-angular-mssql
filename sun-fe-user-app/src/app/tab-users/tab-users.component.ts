@@ -1,8 +1,12 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { ApiServiceService } from '../api-service.service';
 import { IUser } from '../models/user';
+import { WsServiceService } from '../ws-service.service';
 
 export interface DialogData {
   confirmTitle: string;
@@ -18,6 +22,30 @@ const ELEMENT_DATA: IUser[] = [
   {email: 'a6@aa.com'},
   {email: 'a6@aa.com'},
   {email: 'a8@aa.com'},
+  {email: 'a1@aa.com'},
+  {email: 'a2@aa.com'},
+  {email: 'a3@aa.com'},
+  {email: 'a4@aa.com'},
+  {email: 'a5@aa.com'},
+  {email: 'a6@aa.com'},
+  {email: 'a6@aa.com'},
+  {email: 'a8@aa.com'},
+  {email: 'a1@aa.com'},
+  {email: 'a2@aa.com'},
+  {email: 'a3@aa.com'},
+  {email: 'a4@aa.com'},
+  {email: 'a5@aa.com'},
+  {email: 'a6@aa.com'},
+  {email: 'a6@aa.com'},
+  {email: 'a8@aa.com'},
+  {email: 'a1@aa.com'},
+  {email: 'a2@aa.com'},
+  {email: 'a3@aa.com'},
+  {email: 'a4@aa.com'},
+  {email: 'a5@aa.com'},
+  {email: 'a6@aa.com'},
+  {email: 'a6@aa.com'},
+  {email: 'a8@aa.com'},
 ]
 
 @Component({
@@ -25,47 +53,47 @@ const ELEMENT_DATA: IUser[] = [
   templateUrl: './tab-users.component.html',
   styleUrls: ['./tab-users.component.scss']
 })
-export class TabUsersComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'email'];
-  dataSource = new MatTableDataSource<IUser>(ELEMENT_DATA);
+export class TabUsersComponent implements OnInit, AfterViewInit {
+  public users: IUser[] = [];
+  displayedColumns: string[] = ['email'];
+  dataSource!: MatTableDataSource<IUser>;
   selection = new SelectionModel<IUser>(true, []);
+  private readonly newUserTopic: string = 'new-user';
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sorter!: MatSort;
   
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private _apiService: ApiServiceService,
+    private _wsService: WsServiceService) {
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    console.log(this.selection.selected.length);
-  }
+   }
 
-  checkboxLabel(row: any) {
-    if(this.selection.selected.length > 2){
-      this.selection.deselect(row);
-      this.openDialog();
-    }else{
-      this.selection.toggle(row);
-    }
-    console.log(this.selection.selected.length);
-  }
 
-  openDialog() {
-    this.dialog.open(ConfirmDialog, {
-      data: {
-        confirmTitle: 'your votings have exceeded the limitation',
-        confirmMsg: 'the max voting is 3'
-      }
-    });
+  ngAfterViewInit() {
+    
   }
 
   ngOnInit(): void {
+    this._apiService.fetchUsersFromServer().subscribe(
+      data => {
+        console.log('received users: ', data);
+        this.users = data;
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sorter;
+      }, 
+      error => {
+        console.log(error);
+      });
+    
+      this._wsService.listen(this.newUserTopic).subscribe(data => {
+        console.log('receive ws msg: ', data);
+        const result = this.users.find( ({ email }) => email === data );
+        if(result === undefined){
+          this.users.push({email: data as string});
+          location.reload(); 
+        }
+      });
   }
 
-}
-
-
-@Component({
-  selector: 'confirm-dialog',
-  templateUrl: 'confirm-dialog.html',
-})
-export class ConfirmDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }

@@ -28,8 +28,13 @@ export class ApiServiceService {
   }
 
   createVoting(voting: IVoting): Observable<IVoting> {
-    console.log("post new user " + environment.apiUrl + 'Voting/CreateVoting');
-    return this.http.post<IVoting>( environment.apiUrl + 'Voting/CreateVoting', voting);
+    console.log("create voting " + environment.apiUrl + '/Voting/CreateVoting');
+    return this.http.post<IVoting>( environment.apiUrl + '/Voting/CreateVoting', voting);
+  }
+
+  vote(voting: IVoting): Observable<IVoting> {
+    console.log("create voting " + environment.apiUrl + '/Voting/vote');
+    return this.http.post<IVoting>( environment.apiUrl + '/Voting/vote', voting);
   }
 
   fetchVotingsFromServer(): Observable<IVoting[]>{

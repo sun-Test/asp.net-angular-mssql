@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { 
       this.form = new FormGroup({email: new FormControl(null, [Validators.required, Validators.email, Validators.minLength(5)])});
+
     }
 
   ngOnInit(): void {
 
   }
-
 
   async onSubmit() {
     if(this.form.invalid){
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       data => {
           console.log('logged in ', data);
-          this.router.navigate(['/users', "aaa@bbb.com"]);
+          this.router.navigate(['/users', data.email]);
         },
       error => {
         confirm("user wrong, pls rigister first");

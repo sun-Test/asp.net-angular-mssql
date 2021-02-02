@@ -5,6 +5,7 @@ import { MatListOption } from '@angular/material/list';
 import { ActivatedRoute } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 import { IUser } from '../models/user';
+import { IVoting } from '../models/voting';
 import { WsServiceService } from '../ws-service.service';
 
 @Component({
@@ -15,33 +16,42 @@ import { WsServiceService } from '../ws-service.service';
 export class UsersComponent implements OnInit {
 
   public accName: string = '';
-  public users: IUser[] = [];
-  private readonly newUserTopic: string = 'new-user';
+  votings: IVoting[] = [];
 
   constructor(private _apiService: ApiServiceService, private route: ActivatedRoute, 
     private _wsService: WsServiceService) { }
 
   ngOnInit() {
-    this._apiService.fetchUsersFromServer().subscribe(data => this.users = data);
+    this._apiService.fetchVotingsFromServer().subscribe(data => this.votings = data);
     console.log( 'acc param: ', this.route.snapshot.params['acc']);
     this.accName = this.route.snapshot.params['acc'];
-
-    this._wsService.listen(this.newUserTopic).subscribe(data => {
-      console.log('receive ws msg: ', data);
-      const result = this.users.find( ({ email }) => email === data );
-      if(result === undefined){
-        this.users.push({email: data as string});
-        location.reload(); 
-      }
-    });
   }
 
   onCandidate(changedEvent: any){
-    
-    console.log('cadidate is checked: ', changedEvent.checked);
+
+    if(changedEvent.checked){    
+      const res = this.votings.find(x=>x.candidateEmail === this.accName);
+      if(res === undefined){
+        this._apiService.createVoting({candidateEmail: this.accName}).subscribe (
+          () => { this.votings.push({candidateEmail: this.accName});
+          location.reload();  
+        }
+        );
+      }
+    }
+    console.log('cadidate is checked: ', changedEvent.checked, this.accName);
   }
+
   onVote(selectedOptions: any){
-    console.log("selected items: ", selectedOptions.length);
+    console.log("selected items: ", selectedOptions);
+    for(let entry of selectedOptions){
+      this._apiService.vote({candidateEmail: entry.value, voterEmail: this.accName}).subscribe(
+        ()=>{
+          location.reload();
+        }
+      );
+      console.log(entry.value);
+    }
   }
 
   isVotingInvalid(selectionList: any) {

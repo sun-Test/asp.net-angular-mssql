@@ -89,6 +89,35 @@ namespace sunny_dn_01.Controllers
             }
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [HttpPost]
+        public async Task<ActionResult<Voting>> vote([FromBody] VotingModel votingModel)
+        {
+            try
+            {
+                Console.WriteLine("post new voting");
+                var resCandi = _mediator.Send(new GetUserByEmailQuery { Email = votingModel.CandidateEmail });
+                var resVoter = _mediator.Send(new GetUserByEmailQuery { Email = votingModel.VoterEmail });
+                await Task.WhenAll(resCandi, resVoter);
+                if (resCandi != null && resVoter != null)
+                {
+                    var newVot = await _mediator.Send(new CreateVotingCommand { Voting = new Voting { CandidateID = resCandi.Result.ID,
+                        VoterID = resVoter.Result.ID} });
+                    await _publisher.PublishAsync("new-voting", "aaah");
+                    return newVot;
+                }
+
+                return BadRequest("user emails are wrong");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpGet]
         public async Task<string> t03()

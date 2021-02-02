@@ -1,11 +1,14 @@
 ﻿<Properties StartupConfiguration="{1F4A330D-083A-4FAA-B7FF-037777714A18}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="sunny-dn-01/Models/VotingModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="sunny-dn-01/Domains/User.cs">
     <Files>
-      <File FileName="sunny-dn-01/Controllers/UserController.cs" Line="90" Column="22" />
+      <File FileName="sunny-dn-01/Controllers/UserController.cs" Line="105" Column="52" />
       <File FileName="sunny-dn-01/Service/KafkaService/KafPublisher.cs" Line="33" Column="10" />
       <File FileName="sunny-dn-01/Service/KafkaService/IKafPublisher.cs" Line="9" Column="53" />
-      <File FileName="sunny-dn-01/Controllers/VotingController.cs" Line="1" Column="1" />
-      <File FileName="sunny-dn-01/Models/VotingModel.cs" Line="4" Column="1" />
+      <File FileName="sunny-dn-01/Controllers/VotingController.cs" Line="101" Column="62" />
+      <File FileName="sunny-dn-01/Models/VotingModel.cs" Line="6" Column="1" />
+      <File FileName="sunny-dn-01/Domains/Voting.cs" Line="1" Column="1" />
+      <File FileName="sunny-dn-01/Domains/User.cs" Line="4" Column="18" />
+      <File FileName="sunny-dn-01/Service/UserService/GetUserByEmailQuery.cs" Line="7" Column="51" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,10 +16,10 @@
           <Node name="sunny-dn-01" expanded="True">
             <Node name="sunny-dn-01" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Domains" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="VotingModel.cs" selected="True" />
+              <Node name="Domains" expanded="True">
+                <Node name="User.cs" selected="True" />
               </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Repository" expanded="True" />
               <Node name="Service" expanded="True">
                 <Node name="KafkaService" expanded="True" />
