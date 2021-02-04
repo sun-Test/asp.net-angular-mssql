@@ -1,10 +1,6 @@
-import { getTreeMultipleDefaultNodeDefsError } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { MatListOption } from '@angular/material/list';
 import { ActivatedRoute } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
-import { IUser } from '../models/user';
 import { IVoting } from '../models/voting';
 import { WsServiceService } from '../ws-service.service';
 
@@ -17,14 +13,19 @@ export class UsersComponent implements OnInit {
 
   public accName: string = '';
   votings: IVoting[] = [];
+  candidateBtnChecked: boolean = false;
 
   constructor(private _apiService: ApiServiceService, private route: ActivatedRoute, 
     private _wsService: WsServiceService) { }
 
   ngOnInit() {
-    this._apiService.fetchVotingsFromServer().subscribe(data => this.votings = data);
-    console.log( 'acc param: ', this.route.snapshot.params['acc']);
     this.accName = this.route.snapshot.params['acc'];
+    this._apiService.fetchVotingsFromServer().subscribe(data => 
+      {
+        this.votings = data;
+        this.candidateBtnChecked = this.votings.find(x=> x.candidateEmail === this.accName) != undefined;
+      }
+      );
   }
 
   onCandidate(changedEvent: any){

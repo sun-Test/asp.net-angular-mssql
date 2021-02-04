@@ -62,4 +62,3 @@ export class LoginComponent implements OnInit {
     );
   }
 }
-//    this._wsService.emit(this.CREATE_USER, this.form.value.email);

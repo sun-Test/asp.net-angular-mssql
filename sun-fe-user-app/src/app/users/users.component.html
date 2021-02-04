@@ -1,6 +1,6 @@
 <section class="title-section">
     <h2 class="mat-h2">Welcome {{accName}} !!</h2>
-    <mat-slide-toggle (change)="onCandidate($event)">candidate myself</mat-slide-toggle>
+    <mat-slide-toggle [checked] = "candidateBtnChecked" (change)="onCandidate($event)">candidate myself</mat-slide-toggle>
 </section>
 
 <mat-grid-list cols="4" rowHeight="50px">
