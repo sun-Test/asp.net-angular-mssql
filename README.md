@@ -19,7 +19,12 @@
    1. to implement the CQRS, the MediatR is used in the backend.  
    1. to implement the async communication between the frontend and kafka, socket.io is in used  
    1. if a new user/voting is created, the backend will publish this event with kafka, the web-socket-server will consume this event and send the event to all sockets, at the end all with web-socket connected frontends will receive this event and update the pages.  
-
+   1. to use EF in the new .net version, the IncludeAsset must be commented in the project file(.csproj)like:  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
+      <!-- Remove IncludeAssets to allow compiling against the assembly -->
+      <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets> -->
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+ 
 
  
  
