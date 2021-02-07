@@ -19,19 +19,11 @@ const TREE_CHILDREN = 'tree01 children';
 const CREATE_USER = 'create-user';
 const WS_READY='wsReady';
 
-sktIo.on('connection', (socket) => {
-    console.log('new webSocket connection...');
-    socket.emit('wsReady', 'hello from ws server');
-
-    socket.on(CREATE_USER, createUser);
-});
 
 const createUser = (data) => {
   console.log('socket-io create-user ', data);
   sendKafkaMsg(CREATE_USER, data);
 }
-
-server.listen(PORT, () => console.log('WebSocket Server running on port ' + PORT));
 
 var util  = require('util');
 var Kafka = require('no-kafka');
@@ -68,9 +60,28 @@ function sendKafkaMsg(topic, msg){
     */
   });
 }
-return consumer.init().then(function () {
+
+class MyWsServer{
+  constructor(){
+  }
+
+  startApp() {
+    sktIo.on('connection', (socket) => {
+      console.log('new webSocket connection...');
+      socket.emit('wsReady', 'hello from ws server');
+      socket.on(CREATE_USER, createUser);
+  });
+
+  server.listen(PORT, () => console.log('WebSocket Server running on port ' + PORT));
+
+  consumer.init().then(function () {
     // Subscribe partitons 0 - 4 in a topic:
     consumer.subscribe('new-voting', [0,1,2,3,4], newVotingHandler);
     return consumer.subscribe('new-user', [0,1,2,3,4], newUserHandler);
-});
+  });
+  }
+}
+
+let myServer = new MyWsServer();
+myServer.startApp();
 

@@ -44,6 +44,7 @@ namespace sunny_dn_01.Repository
             {
                 throw new Exception($"{nameof(entity)} could not be saved {ex.Message}");
             }
+            
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
@@ -64,6 +65,7 @@ namespace sunny_dn_01.Repository
             {
                 throw new Exception($"{nameof(entity)} could not be updated {ex.Message}");
             }
+
         }
 
         public async Task UpdateRangeAsync(List<TEntity> entities)
@@ -82,6 +84,8 @@ namespace sunny_dn_01.Repository
             {
                 throw new Exception($"{nameof(entities)} could not be updated {ex.Message}");
             }
+
         }
+
     }
 }

@@ -28,8 +28,6 @@ namespace sunny_dn_01.Controllers
             _mediator = mediator;
             _publisher = kafPublisher;
         }
-
-        // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
