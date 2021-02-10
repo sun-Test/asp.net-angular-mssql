@@ -10,5 +10,7 @@ namespace sunny_dn_01.Repository
     {
         Task<List<Voting>> GetVotingsAsync(CancellationToken cancellationToken);
         Task<Voting> GetVotingByUserIdAsync(Guid userId, CancellationToken cancellationToken);    
+        
+        Task<int> CancelVotingByUserIdAsync(Guid userId, CancellationToken cancellationToken);    
     }
 }

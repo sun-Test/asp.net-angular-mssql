@@ -61,7 +61,7 @@ namespace sunny_dn_01.Controllers
             }
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         [HttpPost]
@@ -76,6 +76,31 @@ namespace sunny_dn_01.Controllers
                     var newVot =await _mediator.Send(new CreateVotingCommand { Voting = new Voting { CandidateID = resUser.ID} });
                     await _publisher.PublishAsync("new-voting", "aaah");
                     return newVot;
+                }
+
+                return BadRequest("candidate email is wrong");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [HttpDelete]
+        public async Task<ActionResult<int>> CancelVoting([FromRoute] string CandidateEmail)
+        {
+            try
+            {
+                var resUser = await _mediator.Send(new GetUserByEmailQuery { Email = CandidateEmail });
+                if (resUser != null)
+                {
+                    var deletedNum = await _mediator.Send(new CancelCandidateCommand { UserId = resUser.ID });
+                    await _publisher.PublishAsync("cancel-candidate", "");
+                    return deletedNum;
                 }
 
                 return BadRequest("candidate email is wrong");

@@ -25,5 +25,15 @@ namespace sunny_dn_01.Repository
             return await dBContext.Votings.ToListAsync(cancellationToken);
             //return await dBContext.Votings.Where(x => x.VoterID.Equals(Guid.Empty)).ToListAsync(cancellationToken);
         }
+
+
+        public async Task<int> CancelVotingByUserIdAsync(Guid userId, CancellationToken cancellationToken) 
+        {
+            var users = dBContext.Votings.Where(p => p.CandidateID == userId).ToList();
+            dBContext.Votings.RemoveRange(users);
+            return await dBContext.SaveChangesAsync(cancellationToken);
+        }
+        
     }
+
 }
