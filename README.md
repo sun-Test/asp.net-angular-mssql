@@ -5,8 +5,8 @@
 
 1. setup  
    1. run sql-server in docker:  
- docker run -d --name sun_sql_server -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=sun.123456' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest  
- install sql-cli  
+   docker-compose up -d db 
+   1. install sql-cli  
    1. set up sql-server connection in .net backend  
    1. init database: dotnet ef migrations add DataModels and dotnet ef database update  
    1. run Zookeeper and Kafaka: download Kafaka, ./bin/zookeeper-server-start.sh ./config/zookeeper.properties and ./bin/kafka-server-start.sh ./config/server.properties  
