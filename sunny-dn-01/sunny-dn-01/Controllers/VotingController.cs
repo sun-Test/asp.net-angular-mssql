@@ -10,6 +10,8 @@ using sunny_dn_01.Service.KafkaService;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using sunny_dn_01.Service.UserService;
+using sunny_dn_01.Service.VotingService;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

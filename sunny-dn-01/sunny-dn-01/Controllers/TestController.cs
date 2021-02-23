@@ -8,6 +8,7 @@ using sunny_dn_01.Domains;
 using MediatR;
 using sunny_dn_01.Service.UserService;
 using sunny_dn_01.Service.KafkaService;
+using sunny_dn_01.Service.VotingService;
 
 namespace sunny_dn_01.Controllers
 {

@@ -6,7 +6,7 @@ using MediatR;
 using sunny_dn_01.Domains;
 using sunny_dn_01.Repository;
 
-namespace sunny_dn_01.Service.UserService
+namespace sunny_dn_01.Service.VotingService
 {
     public class GetVotingsHandler : IRequestHandler<GetVotingsQuery, List<Voting>>
     {

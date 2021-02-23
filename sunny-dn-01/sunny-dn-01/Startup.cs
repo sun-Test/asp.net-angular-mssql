@@ -14,6 +14,9 @@ using System.Collections.Generic;
 using AutoMapper;
 using sunny_dn_01.Service.KafkaService;
 using System.Reflection;
+using sunny_dn_01.Service.UserService;
+using System;
+using sunny_dn_01.Service.VotingService;
 //using FluentValidation;
 
 namespace sunny_dn_01
@@ -63,7 +66,7 @@ namespace sunny_dn_01
             services.AddTransient<IRequestHandler<GetUserByEmailQuery, User>, GetUserByEmailQueryHandler>();
             services.AddTransient<IRequestHandler<GetVotingsQuery, List<Voting>>, GetVotingsHandler>();
             services.AddTransient<IRequestHandler<CreateUserCommand, User>, CreateUserCommandHandler>();
-            services.AddTransient<IRequestHandler<CancelCandidateCommand, int>, CancelCandidateCommandHandler>();
+            services.AddTransient<IRequestHandler<CancelCandidateCommand, Int32>, CancelCandidateCommandHandler>();
             services.AddTransient<IKafListener, KafkaConsumerHostedService>();
 
             services.AddSingleton<IKafPublisher, KafPublisher>();

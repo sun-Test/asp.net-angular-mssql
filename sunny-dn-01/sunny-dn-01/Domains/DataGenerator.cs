@@ -20,7 +20,7 @@ namespace sunny_dn_01.Domains
 
         public static void SeedData(AppDbContext context)
         {
-            if (context.Users.Any() && context.Votings.Any())
+            if (context.Users.Any()) //&& context.Votings.Any()
             {
                 Console.WriteLine("already seeded");
                 //return;   // Database has been seeded
@@ -34,12 +34,12 @@ namespace sunny_dn_01.Domains
                     {
                         Email = "sunny@outlook.com"
                 });
+
                 context.SaveChanges();
+                //Voting voting = new Voting { CandidateID = user.ID };
+                //context.Votings.AddRange(voting);
 
-                Voting voting = new Voting { CandidateID = user.ID };
-                context.Votings.AddRange(voting);
-
-                
+                //context.SaveChanges();
 
             }
         }
